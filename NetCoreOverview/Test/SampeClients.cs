@@ -9,7 +9,7 @@ namespace NetCoreOverview.Test
 {
     public class SampeClients
     {
-         
+
         public static List<Client> clients = new List<Client>()
             {
                 ///////////////////////////////////////////
@@ -306,6 +306,6 @@ namespace NetCoreOverview.Test
                         "api1", "api2.read_only", "api2.full_access"
                     }
                 }
-            }
+            };
     }
 }

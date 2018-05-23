@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using NetCoreOverview.Filters;
 using NetCoreOverview.Test;
 
@@ -33,16 +34,8 @@ namespace NetCoreOverview
                 options.Filters.Add<CoreResourceFilter>();
                 options.Filters.Add<CoreExceptionFilter>();
             });
-
-            services.AddIdentityServer(options =>
-            {
-                options.Events.RaiseSuccessEvents = true;
-                options.Events.RaiseErrorEvents = true;
-                options.Events.RaiseInformationEvents = true;
-            })
-            .AddInMemoryClients(SampeClients.clients)
-            .AddInMemoryApiResources()
-
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +52,7 @@ namespace NetCoreOverview
             }
             
             app.UseStaticFiles();
+            app.UseSession();
             //包括区域的路由模板.
             app.UseMvc(routes =>
             {

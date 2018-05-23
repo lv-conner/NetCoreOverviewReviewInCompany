@@ -11,6 +11,6 @@ namespace NetCoreOverview.Test
         public static List<ApiResource> apiResources = new List<ApiResource>()
         {
 
-        }
+        };
     }
 }
