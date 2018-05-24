@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using IdentityServer4;
 using IdentityServer4.Models;
@@ -35,6 +36,11 @@ namespace NetCoreOverview
                 options.Filters.Add<CoreExceptionFilter>();
             });
             services.AddMemoryCache();
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = "localhost";
+                options.InstanceName = Assembly.GetExecutingAssembly().FullName;
+            });
             services.AddSession();
         }
 
